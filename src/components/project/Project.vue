@@ -11,7 +11,7 @@ const allCategories = ["All", "Design", "Branding", "Development", "Products"];
 // get data from json
 onMounted(async () => {
   try {
-    const response = await fetch("../../../data/projects.json");
+    const response = await fetch("data/projects.json");
     const result = await response.json();
     allProjects = result;
     filteredProjects.value = allProjects;

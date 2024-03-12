@@ -10,7 +10,7 @@ const blogDetail = ref(null);
 
 onMounted(async () => {
   try {
-    const response = await fetch("../../data/blogs.json");
+    const response = await fetch("data/blogs.json");
     const result = await response.json();
     blogDetail.value = result.find((blog) => blog.id === blogId);
     console.log(blogDetail.value);
