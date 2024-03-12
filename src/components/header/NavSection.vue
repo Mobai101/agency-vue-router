@@ -11,6 +11,7 @@ const openMobileNav = () => {
 const closeMobileNav = () => {
   isShownNav.value = false;
 };
+
 //#endregion
 </script>
 

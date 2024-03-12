@@ -16,8 +16,8 @@ onMounted(async () => {
   }
 });
 
-const blogClickHandler = (blogTitle) => {
-  router.push(`/blog/${blogTitle}`);
+const blogClickHandler = (blogId) => {
+  router.push(`/blog/${blogId}`);
 };
 </script>
 
@@ -37,8 +37,8 @@ const blogClickHandler = (blogTitle) => {
         <BlogCard
           v-for="blog in blogs"
           :blog="blog"
-          :key="blog.title"
-          @click="blogClickHandler(blog.title)"
+          :key="blog.id"
+          @click="blogClickHandler(blog.id)"
         />
       </div>
     </div>
