@@ -1,0 +1,122 @@
+:root {
+  --orange: #ff564f;
+  --orangeHover: #fd817c;
+  --orangeSubcribe: #ff635c;
+  --yellow: #f8e71c;
+  --green: #417505;
+  --purple: #9013fe;
+  --black: #000000;
+  --white: #ffffff;
+  --whiteHover: #f0f0f0;
+  --halfBlack: #11111180;
+  --halfwhite: #ffffff80;
+  --GreySocial: #333333;
+  --greyProjectSelect: #dadada;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth !important;
+}
+
+body {
+  font-family: "Inknut Antiqua";
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.container {
+  width: 73.125rem;
+  margin: auto;
+}
+
+.inknutAntiqua {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 4rem;
+  font-family: "Inknut Antiqua";
+  text-transform: uppercase;
+}
+
+.DMsans {
+  font-family: "DM sans";
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+.robotoCondensed {
+  font-family: "Roboto Condensed";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+hr {
+  height: 3px;
+  color: var(--black);
+  background-color: var(--black);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+  width: 73.125rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.opaque {
+  opacity: 0;
+  transition: none !important;
+}
+
+@keyframes growPadding {
+  from {
+    padding: 0;
+  }
+  to {
+    padding: 0 1rem;
+  }
+}
+
+/* tablet */
+@media screen and (max-width: 1170px) {
+  .container {
+    width: 90vw;
+  }
+
+  hr {
+    width: 90vw;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  .container {
+    width: 88vw;
+  }
+
+  .inknutAntiqua {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 3rem;
+    font-family: "Inknut Antiqua";
+    text-transform: uppercase;
+  }
+
+  hr {
+    width: 20.625rem;
+  }
+}
