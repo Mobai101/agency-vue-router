@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, TransitionGroup } from "vue";
 import ProjectCard from "./ProjectCard.vue";
 
 let allProjects = [];
@@ -89,12 +89,14 @@ const loadMore = () => {
         </aside>
         <div class="projectBody_body">
           <div class="projectBody_contentContainer">
-            <ProjectCard
-              v-for="(project, index) in filteredProjects"
-              :project="project"
-              :key="project.description"
-              :hidden="isHiding && index > 1"
-            />
+            <TransitionGroup name="project">
+              <ProjectCard
+                v-for="(project, index) in filteredProjects"
+                :project="project"
+                :key="project.description"
+                :hidden="isHiding && index > 1"
+              />
+            </TransitionGroup>
           </div>
           <!-- Load more button -->
           <button
@@ -207,6 +209,20 @@ const loadMore = () => {
 
   .projectBody_btn:active {
     transform: translateY(4px);
+  }
+
+  .project-move,
+  .project-enter-active {
+    transition: all 0.5s ease;
+  }
+
+  .project-enter-from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  .project-leave-active {
+    position: absolute;
   }
 }
 

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, Transition } from "vue";
 
 //#region function to click button to show Youtube video
 const isShownYoutube = ref(false);
@@ -20,47 +20,48 @@ const closeYoutube = () => {
     <div class="container">
       <div class="advantageContainer">
         <!-- Image Div -->
-        <div class="advantageSection_ImgDiv" v-if="!isShownYoutube">
-          <img src="/assets/Group1.png" alt="Lady with book" />
-          <button class="advantageSection_ImgDiv_btn" @click="openYoutube">
-            <svg
-              width="36"
-              height="36"
-              viewBox="0 0 10 16"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M10 8L0 16L0 0L10 8Z" fill="currentColor" />
-            </svg>
-          </button>
-        </div>
-
-        <div class="youtubeDiv" v-else>
-          <iframe
-            src="https://www.youtube.com/embed/888EOAUfbFs?si=w1HsAmQQM0Apc30W"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            class="youtube"
-          ></iframe>
-          <button class="closeYoutubeBtn" @click="closeYoutube">
-            <svg
-              width="16px"
-              height="16px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
-                fill="#0F1729"
-              />
-            </svg>
-          </button>
-        </div>
-
+        <Transition name="lady">
+          <div class="advantageSection_ImgDiv" v-if="!isShownYoutube">
+            <img src="/assets/Group1.png" alt="Lady with book" />
+            <button class="advantageSection_ImgDiv_btn" @click="openYoutube">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 10 16"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M10 8L0 16L0 0L10 8Z" fill="currentColor" />
+              </svg>
+            </button></div
+        ></Transition>
+        <Transition name="youtube">
+          <div class="youtubeDiv" v-if="isShownYoutube">
+            <iframe
+              src="https://www.youtube.com/embed/888EOAUfbFs?si=w1HsAmQQM0Apc30W"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              class="youtube"
+            ></iframe>
+            <button class="closeYoutubeBtn" @click="closeYoutube">
+              <svg
+                width="16px"
+                height="16px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
+                  fill="#0F1729"
+                />
+              </svg>
+            </button>
+          </div>
+        </Transition>
         <!-- text div -->
         <div class="advantageSection_textDiv">
           <h2 class="inknutAntiqua">Lets take advantage</h2>
@@ -140,6 +141,30 @@ const closeYoutube = () => {
 
   .closeYoutubeBtn:hover {
     opacity: 0.6;
+  }
+
+  .lady-enter-active {
+    transition: opacity 0.5s;
+  }
+
+  .lady-enter-from {
+    opacity: 0;
+  }
+
+  .lady-leave-from {
+    display: none;
+  }
+
+  .youtube-enter-active {
+    transition: transform 0.3s;
+  }
+
+  .youtube-enter-from {
+    transform: scale(0.6);
+  }
+
+  .youtube-leave-from {
+    display: none;
   }
 
   .advantageSection_ImgDiv_btn:hover {

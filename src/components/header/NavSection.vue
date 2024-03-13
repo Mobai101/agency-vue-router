@@ -133,6 +133,10 @@ const closeMobileNav = () => {
     text-decoration: underline;
   }
 
+  .router-link-exact-active {
+    color: var(--orange) !important;
+  }
+
   .navbar_nav_items_mobile {
     display: none;
   }

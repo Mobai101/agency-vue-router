@@ -4,9 +4,6 @@ import { createApp } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
 import App from "./App.vue";
-import HeaderSection from "./components/header/HeaderSection.vue";
-import Project from "./components/project/Project.vue";
-import SignUp from "./components/signUp/SignUp.vue";
 import LayoutView from "./pages/LayoutView.vue";
 import IndexPage from "./pages/IndexPage.vue";
 import AboutPage from "./pages/AboutPage.vue";
