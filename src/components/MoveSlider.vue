@@ -4,13 +4,19 @@ import { ref } from "vue";
 const currentSlide = ref(1);
 
 const leftHandler = () => {
-  if (currentSlide.value === 1) return;
-  currentSlide.value--;
+  if (currentSlide.value === 1) {
+    currentSlide.value = slides.value.length;
+  } else {
+    currentSlide.value--;
+  }
 };
 
 const rightHandler = () => {
-  if (currentSlide.value === slides.value.length) return;
-  currentSlide.value++;
+  if (currentSlide.value === slides.value.length) {
+    currentSlide.value = 1;
+  } else {
+    currentSlide.value++;
+  }
 };
 
 const slides = ref([
