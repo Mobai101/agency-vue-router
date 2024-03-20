@@ -97,6 +97,12 @@ const slides = ref([
       v-for="(slide, index) in slides"
       :key="slide.name"
     >
+      <div
+        :class="{
+          overlay: true,
+          overlayHide: index + 1 !== currentSlide,
+        }"
+      ></div>
       <!-- <div class="slideCard--image"> -->
       <img
         :src="`moveAssets/${slide.image}`"
@@ -137,15 +143,25 @@ const slides = ref([
   }
 
   .hideLeft {
-    opacity: 0.5;
     z-index: 0;
     transform: translate(-60%, -50%) scale(0.9);
+    box-shadow: none;
   }
 
   .hideRight {
-    opacity: 0.5;
     z-index: 0;
     transform: translate(-40%, -50%) scale(0.9);
+    box-shadow: none;
+  }
+
+  .overlayHide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(138, 138, 138, 0.295);
+    border-radius: 10px;
   }
 
   .btn {
@@ -168,6 +184,7 @@ const slides = ref([
   .slideCard--image {
     height: 100%;
     width: 560px;
+    border-radius: 10px 0 0 10px;
   }
 
   .slideCard--textDiv {
