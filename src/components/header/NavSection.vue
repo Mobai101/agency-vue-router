@@ -3,6 +3,7 @@ import { RouterLink } from "vue-router";
 import { ref } from "vue";
 
 //#region Show/hide mobile navigation
+const isShowingModal = ref(false);
 const isShownNav = ref(false);
 const openMobileNav = () => {
   isShownNav.value = true;
@@ -10,6 +11,18 @@ const openMobileNav = () => {
 
 const closeMobileNav = () => {
   isShownNav.value = false;
+};
+
+const signUpToggleHandler = () => {
+  isShowingModal.value = true;
+};
+
+const closeModalHandler = () => {
+  isShowingModal.value = false;
+};
+
+const submitHandler = (e) => {
+  console.log(e);
 };
 
 //#endregion
@@ -22,9 +35,19 @@ const closeMobileNav = () => {
       v-if="isShownNav"
       @click="closeMobileNav"
     ></div>
+    <div class="overlay" v-if="isShowingModal"></div>
+    <div v-if="isShowingModal" class="signUpModal">
+      <form @submit.prevent="submitHandler($event)">
+        <input type="text" />
+        <input type="email" />
+        <button>Submit</button>
+      </form>
+      <button class="closeModal" @click="closeModalHandler">x</button>
+    </div>
     <div class="container">
       <div class="navbar">
         <h1 class="robotoCondensed site_title"><a href="/">agency</a></h1>
+        <button class="signUpBtn" @click="signUpToggleHandler">Sign Up</button>
         <nav class="navbar_nav DMsans">
           <div class="navbar_nav_items">
             <!-- <a href="#about">About</a>
@@ -90,6 +113,72 @@ const closeMobileNav = () => {
   .site_title a {
     color: var(--white);
     text-decoration: none;
+  }
+
+  .signUpBtn {
+    padding: 0.5rem 1rem;
+    background-color: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+  }
+
+  .signUpBtn:hover {
+    background-color: var(--orangeHover);
+  }
+
+  .signUpBtn:active {
+    transform: translateY(3px);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.63);
+    z-index: 9;
+  }
+
+  .signUpModal {
+    padding: 2rem;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  .signUpModal form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .signUpModal form button {
+    align-self: center;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--orange);
+    padding: 0.5rem 1rem;
+    color: var(--white);
+  }
+
+  .signUpModal form button:hover {
+    background-color: var(--orangeHover);
+  }
+
+  .closeModal {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    padding: 0.2rem;
+    border: none;
+    background-color: transparent;
   }
 
   .navbar_backGround {
